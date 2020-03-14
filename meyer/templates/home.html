@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta content="width=device-width, initial-scale=1" name="viewport">
+	<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<title>Adrian L Meyer - Doylestown Law Firm</title>
+<link rel='dns-prefetch' href='//s.w.org' />
+
+<link href="/static/meyer.css" rel="stylesheet">
+<link href="/static/w3c.css" rel="stylesheet">
+<style>
+  .semi-opaque{
+     background:rgba(255,255,255,.75);
+  }
+  .slight-opaque {
+     background:rgba(255,255,255,.9);
+  }
+  </style>
+<style>
+       /* Set the size of the div element that contains the map */
+      #map {
+        height: 400px;  /* The height is 400 pixels */
+        width: 100%;  /* The width is the width of the web page */
+       }
+    </style>
+</head>
+<body>
+	  <!-- To Top Button -->
+<!--button onclick="topFunction()" id="topBtn" title="Go to top">Top</button>-->
+
+
+
+<!-- Navbar (Sits on top) -->
+  <div class="w3-bar semi-opaque myNavbar stickyheader"  id="stickyheader" style="position:fixed;z-index:10">
+    <img src="/static/Adrian_Meyer_Logo_-_Small.png" class="meyer-initials-img" >
+       <!-- Navbar on small screens -->
+       <a class="w3-bar-item w3-button w3-right meyer-nav" style="color:maroon" href="javascript:void(0);" onclick="toggleFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
+       <div class="w3-bar-block w3-hide w3-right" id="navDemo">
+       {% for topic in topics %}
+            <span class="w3-bar-item w3-button semi-opaque meyer-block"><a href="#{{ topic.url }}" onclick="toggleFunction()"><img src="/static/icon/{{ topic.icon }}"> {{ topic.title }}</a></span>
+	    {% endfor %}
+	    <!--span class="mobile"-->
+	    <span class="w3-bar-item semi-opaque">
+	    <a class="w3-bar-item w3-button meyer-phone meyer-inline-block" style="display:inline-block;width:50px;" href="tel:215-345-8811"><img src="/static/icon/phone-call.svg"></a>
+            <a class="w3-bar-item w3-button semi-opaque meyer-inline-block" style="display:inline-block;width:50px;" href="geo:40.313044, -75.127664"><img src="/static/icon/navigation.svg"></a>
+	    </span>
+	    
+       </div>
+             <span class="w3-right full sticky-nav-contact"><b>215-345-8811</b> &bull;  meyerlegal@comcast.net</span>
+      <span class="w3-right tablet sticky-nav-contact"><b>215-345-8811</b> &bull;  meyerlegal@comcast.net</span>
+       <span id="header-icons-shortcuts" class="w3-right mobile">
+       <a class="w3-bar-item w3-button w3-right w3-padding-16" title="Open GPS" style="background:transparent" href="geo:40.313044, -75.127664"><img src="/static/icon/navigation.svg"></a>
+       <a class="w3-bar-item w3-button w3-right meyer-phone" title="Call Us" style="background:transparent" href="tel:215-345-8811"><img src="/static/icon/phone-call.svg"></a>
+       </span>
+   </div>
+
+<div class="topheader full">
+  <div class="w3-bar semi-opaque myNavbar">
+    <a class="w3-bar-item w3-button w3-hide-large w3-right w3-hover-none" href="javascript:void(0);" onclick="toggleFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
+    <div class="w3-bar-item fixed-header">
+<!--      <img src="/static/Adrian_Meyer_Logo_-_Small.png" style="width:100px;">-->
+       <p class="copernicus">Law Offices of Adrian L. Meyer<br>
+       </p>
+    </div>
+    <div>
+    {% for topic in topics.reverse %}
+      <a class="w3-bar-item w3-button w3-right w3-padding-16 w3-hover-none" href="#{{ topic.url }}" style="background:transparent;color:black; ">{{ topic.title }}</a>
+      {% endfor %}
+      	    <!--a class="w3-bar-item w3-button w3-right w3-padding-16 w3-hover-none" style="display:inline-block;width:50px;background:transparent;" href="tel:215-345-8811"><img src="/static/icon/phone-call.svg"></a-->
+            <!--a class="w3-bar-item w3-button w3-right w3-padding-16 w3-hover-none" style="display:inline-block;width:50px;background:transparent" href="geo:40.313044, -75.127664"><img src="/static/icon/navigation.svg"></a>-->
+	    </div>
+    <div class="topheader-phone">
+      <b>215-345-8811 <br>
+      meyerlegal@comcast.net
+    </div>
+  </div>
+
+</div>
+
+<div class="topheader tablet">
+  <div class="w3-bar semi-opaque myNavbar">
+<!--      <img src="/static/Adrian_Meyer_Logo_-_Small.png" style="width:100px;">   -->
+    <p class="pageTitleMed w3-left">Law Offices of Adrian L. Meyer</p>
+    <span class="w3-right">
+    {% for topic in topics.reverse %}
+      <a class="w3-bar-item w3-button w3-right w3-padding-16 w3-hover-none" title="{{ topic.title }}" href="#{{ topic.url }}" style="background:transparent;color:black; "><img src="/static/icon/{{ topic.icon }}"></a>
+      {% endfor %}
+   </span>   
+      <div class="topheader-phone">
+      <b>215-345-8811</b> &bull;  meyerlegal@comcast.net
+    </div>
+
+  </div>
+</div>
+
+<div class="topheader mobile">
+  <div class="w3-bar semi-opaque myNavbar w3-left">
+<!--    <a class="w3-bar-item w3-button w3-hide-large w3-right w3-hover-none" href="javascript:void(0);" onclick="toggleFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>-->
+<!--      <img src="/static/Adrian_Meyer_Logo_-_Small.png" style="width:100px;">-->
+      <p class="pageTitleSm w3-center">Law Offices of <br>Adrian L. Meyer</a><br></p>
+  </div>
+</div>
+
+
+<!-- First Parallax Image with Logo Text -->
+<div class="bgimg-1 w3-display-container w3-opacity-min w3-margin-bottom full">
+   <div class="w3-display-middle meyer-trust-container">
+     <div class="w3-center w3-padding-large w3-xlarge w3-wide  meyer-trust">LEGAL SERVICES YOU CAN TRUST
+       <hr>
+<p class="servingCounties" style="font-size:.8em;">Serving Bucks & Montgomery Counties</p>
+     </div><br />
+   </div>
+</div>
+
+<!-- First Parallax Image with Logo Text -->
+<div class="bgimg-1 w3-display-container w3-opacity-min w3-margin-bottom tablet">
+   <div class="w3-display-middle meyer-trust-container" >
+     <div class="w3-center w3-padding-large w3-xlarge w3-wide meyer-trust" >LEGAL SERVICES YOU CAN TRUST
+       <hr>
+<p class="servingCounties" style="font-size:.8em;">Serving Bucks & Montgomery Counties</p>
+     </div><br />
+   </div>
+</div>
+
+<!-- First Parallax Image with Logo Text -->
+<div class="bgimg-2 w3-display-container w3-opacity-min w3-margin-bottom mobile">
+   <div class="w3-display-middle" style="">
+     <div class="w3-center w3-padding-large w3-xlarge w3-wide semi-opaque meyer-trust" ><span style="font-size:.5em;line-height:75%">LEGAL SERVICES YOU CAN TRUST</span>
+       <hr>
+<p class="servingCounties" style="font-size:.5em;white-space:nowrap">Serving Bucks &<br>Montgomery Counties</p>
+     </div><br />
+   </div>
+</div>
+
+{% for topic in topics %}
+<div id="{{ topic.url }}">
+  <div class="full">
+    {% if topic.subtopics.all %}
+        {% if topic.background_img %}
+            <div class="w3-container meyer-bg-img" style='padding:140px; background-image:url("media/{{ topic.background_img }}")'>
+        {% endif %}
+	{% for subtopic in topic.subtopics.all %}
+            <div class="w3-card w3-margin-left w3-margin-right meyer-subtopic">
+        <h3>{{ subtopic.title }}</h3>
+	{% autoescape off %}{{ subtopic.content }}{% endautoescape %}
+      </div>
+      {% endfor %}
+       {% if topic.background_img %}
+        </div>
+       {% endif %}
+    {% else %}
+      {% if topic.background_img %}
+       <div class="w3-container meyer-bg-img" style='padding:140px; background-image:url("media/{{ topic.background_img }}")'>
+	<div class="w3-card w3-margin-left w3-margin-right slight-opaque meyer-topic-w-background" style="text-align:center;padding:35px;width:450px;height:450px;" >
+	    <div class="w3-row meyer-content-row" >
+		<div>
+       {% else %}
+    <div class="w3-container w3-text-grey" style="padding-top:80px;padding-bottom:80px;">	
+       <div class="w3-content w3-center">
+	    <div class="w3-card w3-margin-left w3-margin-right" >
+	      {% endif %}
+	  <div class="w3-row" style="display:inline-block;margin-left:20px;margin-right:20px;">
+	    <h2>{{ topic.title }}</h2>
+	    {% if topic.content|length > 1 %}
+	        <div class="usercontent">
+	          {% autoescape off %}{{ topic.content }}{% endautoescape %}
+		</div>
+		{% endif %}
+	  </div>
+
+	</div>
+	{% if topic.background_img %}
+       </div>
+       {% endif %}
+    </div>
+    </div>
+    {% endif %}
+   </div><!-- .full -->
+
+
+
+   <div class="tablet">
+    {% if topic.subtopics.all %}
+        {% if topic.background_img %}
+            <div class="w3-container meyer-bg-img" style='padding:140px; background-image:url("media/{{ topic.background_img }}")'>
+        {% endif %}
+	{% for subtopic in topic.subtopics.all %}
+            <div class="w3-card w3-margin-left w3-margin-right meyer-subtopic">
+        <h3>{{ subtopic.title }}</h3>
+	{% autoescape off %}{{ subtopic.content }}{% endautoescape %}
+      </div>
+      {% endfor %}
+       {% if topic.background_img %}
+        </div>
+       {% endif %}
+    {% else %}
+      {% if topic.background_img %}
+       <div class="w3-container meyer-bg-img" style='padding:140px; background-image:url("media/{{ topic.background_img }}")'>
+	<div class="w3-card w3-margin-left w3-margin-right slight-opaque" style="text-align:center;padding:60px;" >
+	    <div class="w3-row meyer-content-row" >
+		<div>
+       {% else %}
+    <div class="w3-container w3-text-grey" style="padding-top:80px;padding-bottom:80px;" id="{{ topic.url }}">	
+       <div class="w3-content w3-center">
+	    <div class="w3-card w3-margin-left w3-margin-right" >
+	      {% endif %}
+	  <div class="w3-row" style="display:inline-block;margin-left:20px;margin-right:20px;">
+	    <h2>{{ topic.title }}</h2>
+	    {% if topic.content|length > 1 %}
+	        <div class="usercontent">
+	          {% autoescape off %}{{ topic.content }}{% endautoescape %}
+		</div>
+		{% endif %}
+	  </div>
+
+	</div>
+	{% if topic.background_img %}
+       </div>
+       {% endif %}
+    </div>
+    </div>
+    {% endif %}
+   </div><!-- .tablet -->
+
+
+	    
+</div>
+   
+
+  <div class="mobile">
+    {% if topic.background_img1 %}
+     <div class="w3-container" style='padding:140px; background-image:url("media/{{ topic.background_img }}")' >
+        <div class="w3-card w3-margin-left w3-margin-right slight-opaque" style="text-align:center;padding:60px;" >
+            <div class="w3-row" style="color:rgba(40, 40, 40, 1);" >
+                <div class="slideshow-container">
+       {% else %}
+    <div class="w3-container w3-text-grey" style="padding-top:80px;padding-bottom:80px;" id="{{ topic.url }}">
+      <div class="w3-content w3-center">
+        <div class="w3-card w3-margin-left w3-margin-right" >
+    {% endif %}
+          <div class="w3-row">
+            <h2>{{ topic.title }}</h2>
+	    {% if topic.subtopics.all %}
+	       {% for subtopic in topic.subtopics.all %}
+	         <div class="usercontent">
+		   <h3>{{ subtopic.title }}</h3>
+		   {% autoescape off %}{{ subtopic.content }}{% endautoescape %}
+	         </div>
+	      {% endfor %}
+            {% elif topic.content|length > 1 %}
+                 <div class="usercontent">
+                   {% autoescape off %}
+		     {% if topic.mobile_content %}
+		       {{ topic.mobile_content }}
+		     {% else %}
+		       {{ topic.content }}
+		     {% endif %}
+		   {% endautoescape %}
+                </div>
+            {% endif %}
+          </div>
+        </div>
+        {% if topic.background_img1 %}
+      </div>
+      {% endif %}
+      </div>
+   </div>
+  </div>
+	  
+
+</div>
+	
+{% endfor %}
+
+</div>
+</div>
+</div>
+<style>
+div.usercontent > ol {
+    text-align:left;
+    list-style-type:none;
+    display:inline-block;
+    list-style-position: inside;
+}
+
+div.usercontent {
+   text-align:left;
+}
+
+div.usercontent > p {
+    text-align:center;
+}
+
+div.usercontent > h3 {
+    text-align:center;
+    margin-top:1em;
+}
+
+</style>
+<script>
+window.addEventListener("scroll", myFunction);
+
+var header = document.getElementById("stickyheader");
+var sticky = header.offsetTop;
+
+function myFunction() {
+//console.log(header, window.pageYOffset, sticky, document.getElementById("stickyheader"));
+if (window.pageYOffset > 50) {
+    header.classList.remove("stickyheader");
+  } else {
+    header.classList.add("stickyheader");
+  }
+}
+</script>
+
+<!-- Footer -->
+	<div class="w3-row w3-dark-grey w3-row-padding w3-padding-32">
+		<div class="w3-third"><br>
+		</div>
+		<div class="w3-third">
+			<h4>GET IN TOUCH</h4>
+			<hr style="border-style: dashed;">
+			<p>ADRIAN MEYER<br />
+			<i class="fa fa-phone"></i> <a href="tel:+2153458811">215-345-8811</a></p>
+			<p>EMAIL<br />
+			<i class="fa fa-envelope"></i> <a href="#contact">meyerlegal@comcast.net</a></p>
+		</div>
+		
+		<div class="w3-third"><br>
+		</div>
+	</div>
+
+<!-- End 1st Footer -->
+	<!-- 2nd Footer -->
+	<footer class="w3-black w3-padding-24 w3-center">
+		<p>&copy; 2002<script>new Date().getFullYear()>2010&&document.write("-"+new Date().getFullYear());</script>, Meyer Legal</p>
+	</footer>
+<!-- End 2nd Footer -->
+<script>
+  
+// Used to toggle the menu on small screens when clicking on the menu button
+function toggleFunction() {
+    var x = document.getElementById("navDemo");
+    var y = document.getElementById("header-icons-shortcuts");
+    if (x.className.indexOf("w3-show") == -1) {
+        x.className += " w3-show";
+        y.classList.add("w3-hide");
+    } else {
+        x.className = x.className.replace(" w3-show", "");
+        y.classList.remove("w3-hide");
+    }
+}
+// When the user scrolls down 20px from the top of the document, show the TOP button
+	</script>
+</body>
+</html>
